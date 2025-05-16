@@ -1,8 +1,61 @@
+<!--
+-->
 <html>
-  <head><meta charset="UTF-8"></head>
+  <head>
+    <meta charset="UTF8">
+    <style>
+      .egg{
+        transform: scale(0.5);
+        position:fixed;
+        top:-100px;
+        left:-400px;
+      }
+      .up{
+        transform: scale(0.5);
+        position:fixed;
+        top:-100px;
+        left:-400px;
+        display:none;
+      }
+      .down{
+        transform: scale(0.5);
+        position:fixed;
+        top:-100px;
+        left:-400px;
+        display:none;
+      }
+      .text1{
+        position:fixed;
+        top:350px;
+        left:625px;
+      }
+    </style>
+  </head>
   <body>
+    
+      <img src="https://imkn1013.github.io/dream/up.png" class="up">
+        <img src="https://imkn1013.github.io/dream/down.png" class="down">
+          <img src="https://imkn1013.github.io/dream/egg.png" class="egg" id="egg">
+            <p class="text1" id="text1">click me!!</p>
     <script>
-      console.log("ああ");
+       let scale = 1;
+    let growing = true;
+
+    setInterval(() => {
+      if (growing) {
+        scale *= 1.05;
+        if (scale > 1.5) growing = false;
+      } else {
+        scale /= 1.05;
+        if (scale < 1.0) growing = true;
+      }
+      document.getElementById("text1").style.transform = `scale(${scale})`;
+    }, 100);
+      
+      let pushcount=0;
+     document.getElementById("egg").addEventListener('click',function(){
+       
+     });
     </script>
   </body>
 </html>
