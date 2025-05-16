@@ -29,14 +29,29 @@
         top:350px;
         left:625px;
       }
+      .job{
+        transform: scale(1/100);
+        position:fixed;
+        top:78px;
+        left:190px;
+        display:none;
+      }
+      .text2{
+        position:fixed;
+        top:500px;
+        left:480px;
+        display:none;
+      }
     </style>
   </head>
   <body>
     
-      <img src="https://imkn1013.github.io/dream/up.png" class="up">
-        <img src="https://imkn1013.github.io/dream/down.png" class="down">
+      <img src="https://imkn1013.github.io/dream/up.png" class="up" id="up">
+        <img src="https://imkn1013.github.io/dream/down.png" class="down" id="down">
           <img src="https://imkn1013.github.io/dream/egg.png" class="egg" id="egg">
+    <img src="https://imkn1013.github.io/dream/job_programmer.png" class="job" id="job">
             <p class="text1" id="text1">click me!!</p>
+    <h1 class="text2" id="text2">my dream is<br>programmer</h1>
     <script>
        let scale = 1;
     let growing = true;
@@ -53,9 +68,36 @@
     }, 100);
       
       let pushcount=0;
-     document.getElementById("egg").addEventListener('click',function(){
-       
-     });
+      let moved=0;
+      let moved2=0;
+      const fn=function(){
+       if(pushcount==0){
+         document.getElementById("egg").style.visibility="hidden";
+         document.getElementById("up").style.display="inline";
+         document.getElementById("down").style.display="inline";
+         pushcount++;
+       }else if(pushcount==1){
+         document.getElementById("text1").style.display="none";
+         document.getElementById("job").style.display="inline";
+         setInterval(() => {
+           moved++;
+           moved2=Math.min(moved,50);
+           if(moved2%2==0){
+             document.getElementById("text2").style.display="inline";
+           }else{
+             document.getElementById("text2").style.display="none";
+           }
+           document.getElementById("job").style.transform = `scale(${moved2/100})`;
+           document.getElementById("up").style.top = (-100 - moved) + "px";
+           document.getElementById("down").style.top = (-100 + moved) + "px";
+
+    
+         }, 100);
+       }
+     };
+     document.getElementById("egg").addEventListener('click',fn);
+      document.getElementById("up").addEventListener('click',fn);
+      document.getElementById("down").addEventListener('click',fn);
     </script>
   </body>
 </html>
